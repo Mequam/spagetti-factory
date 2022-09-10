@@ -32,10 +32,11 @@ class ParseNodeGroup():
     @staticmethod
     def parse_var(args,name):
         self = args[0]
-
-        #name.split(' ')[0]
+        
+        if name in self.input_node.outputs: 
+            return self.input_node.outputs[name]
+        
         self.group.inputs.new("NodeSocketFloat",name)
-         
         return self.input_node.outputs[name]
 
     @staticmethod
