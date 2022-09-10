@@ -22,13 +22,25 @@ class ParseNodeGroup():
         self.sub = self.create_math_node("SUBTRACT") #create a math node :D
         self.mult = self.create_math_node("MULTIPLY") #create a math node :D
         self.div = self.create_math_node("DIVIDE") #create a math node :D
-
+    
+    #does nothing, performs the operation to the left and too the right
+    @staticmethod
+    def semi(args,a,b):
+        return True
+    
     def parse(self):
         pydice.parse(self.expr,
-        [('+',self.add),('-',self.sub),('*',self.mult),('/',self.div)],
+        [(';',self.semi),('=',self.equal_quality),('+',self.add),('-',self.sub),('*',self.mult),('/',self.div)],
         self.parse_var,
         [self])
     
+    @staticmethod
+    def equal_quality(args,name_socket,sock):
+        self = args[0]
+        
+        out_sock = self.output_node.inputs.new("NodeSocketFloat",name_socket.name)
+        self.group.links.new(sock,out_sock)
+
     @staticmethod
     def parse_var(args,name):
         self = args[0]
