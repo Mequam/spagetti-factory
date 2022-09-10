@@ -36,7 +36,7 @@ def check_outer(expr,parenth=['(',')']):
     #this function checks to see if a given expression is surrounded COMPLETY by parenthasis
     inside = 0
     elen = len(expr)
-    for i in range(-1,elen):
+    for i in range(0,elen): 
         if expr[i] == parenth[0]:
             inside += 1
         elif expr[i] == parenth[1]:
@@ -45,11 +45,8 @@ def check_outer(expr,parenth=['(',')']):
             #the reason this is else is so it doesnt fire if our last charicter is parenthasis
             #we are currently outside of parenthasies, so return false
             #becuse the entire expression is not inside of parenthasis
-            print('NOT SURROUNDED')
             return False
-    print(inside)
     #we never made it out of the currlys so we were allways inside parenthasis
-    print('SURROUNDED')
     return True
 def strip_outer(expr,parenth=['(',')']):
     if check_outer(expr):
